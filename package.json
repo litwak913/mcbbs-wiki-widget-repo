@@ -1,0 +1,39 @@
+{
+  "name": "mcbbs-wiki-widget-repo",
+  "version": "1.0.0",
+  "description": "MCBSSWiki widget repo",
+  "main": "src/index.ts",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14",
+    "@types/node": "^18.0.6",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "esbuild": "^0.14.25",
+    "esbuild-sass-plugin": "^2.2.4",
+    "eslint": "^8.10.0",
+    "open": "^8.4.0",
+    "postcss": "^8.4.8",
+    "postcss-modules": "^4.3.1",
+    "prettier": "^2.5.0",
+    "serve-http": "^1.0.6",
+    "typescript": "^4.6.2",
+    "yarn": "^1.22.17"
+  },
+  "scripts": {
+    "serve": "node script/serve.js",
+    "build": "node script/bundle.js",
+    "build:SaltOutsideMusicLoader": "node script/bundle.js --SaltOutsideMusicLoader",
+    "build:SaltFirework": "node script/bundle.js --SaltFirework"
+  },
+  "keywords": [
+    "wiki"
+  ],
+  "author": "salt-lovely",
+  "license": "MulanPSL-2.0"
+}
