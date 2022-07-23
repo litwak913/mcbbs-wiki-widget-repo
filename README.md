@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-23 16:31:39
+ * @LastEditTime: 2022-07-24 00:41:08
  * @Description: 说明文档
  * @FilePath: \mcbbs-wiki-widget-repo\README.md
 -->
@@ -72,5 +72,5 @@ export default [
 
 ## 借物表
 
-- 部分脚手架代码来源于(其他开源脚手架)[https://gitee.com/moushu/ms-esbuild-react-scaffold]，以木兰宽松许可证引入。
+- 部分脚手架代码来源于其他[开源脚手架](https://gitee.com/moushu/ms-esbuild-react-scaffold)，以木兰宽松许可证引入。
 - 部分工具函数来源于盐以前的个人作品。
