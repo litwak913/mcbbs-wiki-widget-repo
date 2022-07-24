@@ -1,5 +1,5 @@
 /*
- * @LastEditTime: 2022-07-23 16:40:41
+ * @LastEditTime: 2022-07-24 09:46:14
  * @Description: 打包到 dist
  */
 const outFile = 'dist/bundle.js'
@@ -26,7 +26,7 @@ const $T = require('./tools/format-time')
   argus.forEach((args) => {
     if (args.startsWith('--')) {
       const widget = args.slice(2)
-      commonBuild.props.entryPoints = [`src/widget/${widget}/widget.ts`]
+      commonBuild.props.entryPoints = [`widget/${widget}/widget.ts`]
       ;(commonBuild.props.outfile = `dist/widget-${widget}.js`),
         console.log($P(`打包微件${widget}`, 'grey'))
     }

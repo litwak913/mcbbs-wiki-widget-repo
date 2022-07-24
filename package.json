@@ -27,9 +27,10 @@
   },
   "scripts": {
     "serve": "node script/serve.js",
-    "build": "node script/bundle.js",
+    "widget": "node script/createWidget.js",
     "build:SaltOutsideMusicLoader": "node script/bundle.js --SaltOutsideMusicLoader",
-    "build:SaltFirework": "node script/bundle.js --SaltFirework"
+    "build:SaltFirework": "node script/bundle.js --SaltFirework",
+    "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit"
   },
   "keywords": [
     "wiki"

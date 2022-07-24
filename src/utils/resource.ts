@@ -2,12 +2,13 @@
  * @Author: Salt
  * @Date: 2022-07-23 16:53:23
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-23 16:58:13
+ * @LastEditTime: 2022-07-24 10:38:33
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\resource.ts
  */
 /** 根据URL添加脚本 */
-export function addScript(url: string, asynchronous = false) {
+export function addScript(url: string, asynchronous = false, key?: string) {
+  if (key && document.getElementById(key)) return
   let scr = document.createElement('script')
   scr.src = url
   scr.async = asynchronous

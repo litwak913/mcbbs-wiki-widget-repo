@@ -1,12 +1,19 @@
 {
     "cSpell.words": [
+        "blackbg",
+        "bluebg",
         "csstype",
+        "cyanbg",
         "elems",
         "envify",
         "estree",
+        "graybg",
+        "greenbg",
+        "greybg",
         "includeonly",
         "isexe",
         "jsonify",
+        "magentabg",
         "mcbbs",
         "MCBSS",
         "minimatch",
@@ -14,7 +21,10 @@
         "noinclude",
         "outchain",
         "outfile",
+        "redbg",
         "tsutils",
-        "wikitext"
+        "whitebg",
+        "wikitext",
+        "yellowbg"
     ]
 }

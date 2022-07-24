@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 00:41:08
+ * @LastEditTime: 2022-07-24 12:22:28
  * @Description: 说明文档
  * @FilePath: \mcbbs-wiki-widget-repo\README.md
 -->
@@ -18,7 +18,7 @@ MCBBS微件统一仓库。
 
 ## 修改微件
 
-1. 在`src/widget`下找到对应的微件文件夹，里面有至少两个文件`index.tsx`和`widget.ts`
+1. 在`widget`下找到对应的微件文件夹，里面有至少两个文件`index.tsx`和`widget.ts`
 2. `index.tsx`是微件测试用的，`widget.ts`是微件本身的代码
 3. 修改`widget.ts`，并在`index.tsx`中编写测试用的DOM
 4. 控制台输入`yarn serve`指令打开测试页面，看看你的微件是否正常工作
@@ -27,30 +27,9 @@ MCBBS微件统一仓库。
 
 ## 开发新微件
 
-1. 在`src/widget`下新建文件夹，名字是这个微件的名字，比如“SaltWidget”
-2. 在文件夹里新建`index.tsx`和`widget.ts`文件，前者为测试页面，后者为代码文件
-```tsx
-// index.tsx 测试页面
-import React from 'react'
-import './widget'
-
-export default () => {
-  // 可能需要的一些逻辑
-  return (
-    <>测试用的DOM</>
-  )
-}
-```
-```ts
-// widget.ts 代码文件
-import { docReady } from 'Utils/utils'
-// 你可能需要一些工具函数，比如这个DOM加载完毕后执行代码的方法
-docReady(() => {
-  // 代码逻辑
-})
-```
-3. 在根目录下的`package.json`中添加指令，格式参考`"build:SaltWidget": "node script/bundle.js --SaltWidget"`
-4. 在`src/widget/index.tsx`中引入新微件的测试页面
+1. 控制台输入`yarn widget <微件名>`指令，比如新微件名为“SaltWidget”，那么指令就是`yarn widget SaltWidget`
+2. 在`widget/<微件名>`文件夹里出线`index.tsx`和`widget.ts`文件，前者为测试用的页面，后者为代码文件
+3. 在`widget/index.tsx`中引入新微件的测试页面，格式大概这样：
 ```tsx
 // 引入新微件的测试页面
 import SaltWidget from './SaltWidget'
@@ -61,9 +40,9 @@ export default [
   { title: '微件名', Component: 微件名 },
 ]
 ```
-5. 控制台输入`yarn serve`指令打开测试页面，看看你的微件是否正常工作，与其他微件是否存在冲突
-6. 开发完成后，使用第三步添加的新指令（如`build:SaltWidget`），编译代码，并在`dist`文件夹中找到编译后的代码
-7. 在wiki的“Widget”命名空间新建页面，写入微件
+4. 控制台输入`yarn serve`指令打开测试页面，看看你的微件是否正常工作，与其他微件是否存在冲突
+5. 开发完成后，使用指令`yarn build:<微件名>`（如`yarn build:SaltWidget`）打包代码，并在`dist`文件夹中找到编译后的代码
+6. 在wiki的“Widget”命名空间新建页面，写入微件
 ```wikitext
 <noinclude>简单说明</noinclude><includeonly><script>
 // 编译后的代码
