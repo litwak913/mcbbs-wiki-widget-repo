@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-23 17:04:37
+ * @LastEditTime: 2022-07-24 16:56:48
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
@@ -85,4 +85,16 @@ export function randomChoice<T>(arr: T[]): T {
     return null as never
   }
   return arr[Math.floor(Math.random() * arr.length)]
+}
+/** 返回一个一定时间后完成的Promise，单位为毫秒 */
+export function sleep(time = 500) {
+  return new Promise<void>((res) => {
+    setTimeout(() => res(), time)
+  })
+}
+/** 等到方法返回的值为真值 */
+export async function waitTill(what: () => unknown, interval = 500) {
+  while (!what()) {
+    await sleep(interval)
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * @LastEditTime: 2022-03-16 16:27:15
+ * @LastEditTime: 2022-07-24 17:32:15
  * @Description: file content
  */
 const { build } = require('esbuild');
@@ -12,7 +12,7 @@ const defaultBuildConfig = {
   entryPoints: ['src/index.tsx'],
   bundle: true,
   outfile: 'dist/bundle.js',
-  target: 'es2016',
+  target: 'es2017',
   plugins: [
     sassPlugin({
       filter: isCssModule, // css 模块
