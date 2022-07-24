@@ -1,19 +1,22 @@
-import { randomChoice } from 'Utils/utils'
+import { randomChoice, docReady } from 'Utils/utils'
 
 /*
  * @Author: Salt
  * @Date: 2022-07-23 17:00:54
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-23 21:47:51
+ * @LastEditTime: 2022-07-24 20:01:44
  * @Description: 这个文件的功能
- * @FilePath: \mcbbs-wiki-widget-repo\src\widget\SaltFirework\widget.ts
+ * @FilePath: \mcbbs-wiki-widget-repo\widget\SaltFirework\widget.ts
  */
 interface particle {
-  rad: number
   x: number
   y: number
-  speed: number
-  radius: number
+  /** 粒子横向速度 */
+  spdX: number
+  /** 粒子纵向速度 */
+  spdY: number
+  /** 粒子整体速度补正 */
+  spdFall: number
   size: number
   hue: number
   bright: number
@@ -25,58 +28,62 @@ if (document.getElementById('saltFireWorkCanvas'))
   throw new Error('同一页面中只能有一个烟花')
 // 参数
 //! 颜色范围
-const hueRange = (function () {
-  let defaultValue = (function () {
-    var x = []
-    for (let i = 1; i < 361; i++) x.push(i)
-    return x
-  })()
-  let e = document.getElementById('saltFireworkHueRange')
-  if (!e) return defaultValue
-  let c = (e.textContent || '')
-    .replace(/[\s\n_]+/g, '')
-    .replace(/[\;\/\|\/\\，；、\-]+/g, ',')
-    .split(',')
-    .map((v) => parseInt(v))
-    .filter(Boolean)
-    .filter((v) => v > 0 && v < 361)
-  if (!c || c.length < 1 || c.length > 360) return defaultValue
-  return c
-})() // [0, 360]
+let hueRange: number[] // [0, 360]
 //! 颜色变化区间
-const hueDiff = (function () {
-  let e = document.getElementById('saltFireworkHueDiff')
-  if (!e) return 30
-  let c = parseInt(e.textContent || '')
-  if (isNaN(c) || c < 0 || c > 180) return 30
-  return c
-})()
+let hueDiff: number
 //! 粒子效果数量
-const count = (function () {
-  let e = document.getElementById('saltFireworkCount')
-  if (!e) return 110
-  let c = parseInt(e.textContent || '')
-  if (isNaN(c) || c < 1 || c > 500) return 110
-  return c
-})()
+let count: number
 const baseRange = [1, 4] // 粒子大小
-const speedMultiply = 6 // 粒子速度范围
-const radius = 1.7 // 粒子扩散半径比粒子速度
-const baseSpeed = 0.2 // 粒子最低速度
-const fallSpeed = 1.1 // 粒子下坠速度
+const baseSpeed = [0.6, 2, 3] // 粒子最低速度
+const fallSpeed = 1.2 / 60 // 粒子下坠速度
+const fadeSpeed = 0.75 // 粒子消失速度
 const tail = 15 // 尾迹
 /**创建canvas */
-let canvas = document.createElement('canvas')
+const canvas = document.createElement('canvas')
 /**获取canvas绘图区域 */
-let context = canvas.getContext('2d')!
+const context = canvas.getContext('2d')!
 /**烟花粒子数组 */
 let particles: (particle | null)[] = []
 /**记录剩余粒子数量，在合适的时机清理画布 */
 let lastLength = 0
 let zeroFrame = 0
-init()
+
+docReady(init)
 /** 初始化 */
 function init() {
+  /** 从页面中获取配置 */
+  const getValue = (
+    id: string,
+    defaultValue: number,
+    min: number,
+    max: number
+  ): number => {
+    const e = document.getElementById(id)
+    if (!e) return defaultValue
+    const c = parseInt(e.textContent || '')
+    if (isNaN(c) || c < min || c > max) return defaultValue
+    return c
+  }
+  hueRange = (() => {
+    const defaultValue = (() => {
+      var x = []
+      for (let i = 1; i < 361; i++) x.push(i)
+      return x
+    })()
+    const e = document.getElementById('saltFireworkHueRange')
+    if (!e) return defaultValue
+    const c = (e.textContent || '')
+      .replace(/[\s\n_]+/g, '')
+      .replace(/[\;\/\|\/\\，；、\-]+/g, ',')
+      .split(',')
+      .map((v) => parseInt(v))
+      .filter(Boolean)
+      .filter((v) => v > 0 && v < 361)
+    if (!c || c.length < 1 || c.length > 360) return defaultValue
+    return c
+  })()
+  hueDiff = getValue('saltFireworkHueDiff', 30, 0, 180)
+  count = getValue('saltFireworkCount', 110, 1, 500)
   canvas.id = 'saltFireWorkCanvas'
   canvas.style.left = '0'
   canvas.style.top = '0'
@@ -86,45 +93,51 @@ function init() {
   document.body.appendChild(canvas)
   resizeCanvas()
   window.addEventListener('resize', resizeCanvas, false)
-  clearCanvas()
   tick() // 开始tick
   document.addEventListener('mousedown', function (e) {
     createFireworks(e.clientX, e.clientY)
   }) // 监听事件
-}
-/**清理绘图区 */
-function clearCanvas() {
-  context.fillStyle = 'rgba(255,255,255,0)'
-  context.fillRect(0, 0, canvas.width, canvas.height)
 }
 /**重设绘图区大小*/
 function resizeCanvas() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 }
+/**
+ * 返回一个base为中心，宽为size的邻域中的值，大概率靠近中心
+ * @param base 基准值
+ * @param size 区间
+ */
+function rightRandom(base: number, size: number) {
+  return base + (Math.random() * size - Math.random() * size) / 2
+}
 /**创建烟花*/
 function createFireworks(x: number, y: number) {
   /**这个烟花的颜色 */
   let hue = randomChoice(hueRange)
   for (let i = 0; i < count; i++) {
-    let spd = Math.random() * speedMultiply + baseSpeed
-    let p = {
-      rad: Math.random() * 2 * Math.PI, // 弧度
+    const spd = rightRandom(
+      (baseSpeed[1] + baseSpeed[0]) / 2,
+      baseSpeed[1] - baseSpeed[0]
+    )
+    const rad = Math.random() * 2 * Math.PI
+    particles.push({
       x: x,
       y: y,
-      speed: spd,
-      radius: spd * radius,
-      size:
-        Math.floor(Math.random() * (baseRange[1] - baseRange[0])) +
-        baseRange[0],
+      spdX: Math.cos(rad) * spd,
+      spdY: Math.sin(rad) * spd,
+      spdFall: baseSpeed[2],
+      size: rightRandom(
+        (baseRange[1] + baseRange[0]) / 2,
+        baseRange[1] - baseRange[0]
+      ),
       hue: hueRandom(),
-      bright: Math.floor(Math.random() * 16) + 65,
-      alpha: Math.floor(Math.random() * 51) + 50,
-    }
-    particles.push(p)
+      bright: rightRandom(72, 16),
+      alpha: rightRandom(75, 20),
+    })
   }
   function hueRandom() {
-    let h = Math.floor(Math.random() * hueDiff + hue - hueDiff)
+    let h = Math.floor(rightRandom(hue, hueDiff))
     if (h > 360) h -= 360
     else if (h < 0) h += 360
     return h
@@ -132,21 +145,24 @@ function createFireworks(x: number, y: number) {
 }
 /**主过程*/
 function drawParticles() {
+  if (!particles.length) return
+  // 绘制粒子
+  context.globalCompositeOperation = 'lighter'
   for (let i = 0; i < particles.length; i++) {
     let p = particles[i]
     if (!p) continue
-    p.x += Math.cos(p.rad) * p.radius
-    p.y += Math.sin(p.rad) * p.radius + fallSpeed
-    p.radius *= 1 - p.speed / 100
-    p.alpha -= 0.75
+    p.x += p.spdX * p.spdFall
+    p.y += p.spdY * p.spdFall
+    p.spdY += fallSpeed // 粒子下坠加速度
+    p.spdFall *= 0.978 // 粒子整体速度降低
+    p.alpha -= fadeSpeed
     context.beginPath()
     context.arc(p.x, p.y, p.size, 0, Math.PI * 2, false)
     context.closePath()
     context.fillStyle = `hsla(${p.hue},100%,${p.bright}%,${p.alpha / 100})`
     context.fill()
-    if (p.alpha < 0.75)
-      //! 标记已经透明到看不见的粒子
-      particles[i] = null
+    //! 标记已经透明到看不见的粒子
+    if (p.alpha < fadeSpeed) particles[i] = null
   }
   if (lastLength === 0 && particles.length === 0) {
     zeroFrame += 1
@@ -161,17 +177,18 @@ function drawParticles() {
 }
 /**画出尾迹 */
 function drawTail() {
+  if (zeroFrame >= 30) return
   //! 保留前一刻的图案作为尾迹
   context.globalCompositeOperation = 'destination-out'
-  context.fillStyle = `rgba(255,255,255,${1 / tail})`
+  context.fillStyle = `rgba(0,0,0,${1 / tail})`
   context.fillRect(0, 0, canvas.width, canvas.height)
-  context.globalCompositeOperation = 'lighter'
 }
 /**清理已经消失的粒子*/
 function clearParticles() {
+  if (!particles.length) return
   let cp = []
   for (let p of particles) if (p) cp.push(p)
-  particles = cp
+  if (cp.length !== particles.length) particles = cp
 }
 /** 使用requestAnimationFrame绘制 */
 function tick() {

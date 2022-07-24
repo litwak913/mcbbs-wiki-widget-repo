@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-24 12:23:26
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 17:35:37
+ * @LastEditTime: 2022-07-24 17:47:26
  * @Description: 绘制饼图
  * @FilePath: \mcbbs-wiki-widget-repo\widget\getMCBBSCredit\widget.ts
  */
@@ -13,12 +13,10 @@ import type { Options } from 'highcharts'
 import { defaultOption } from './constant'
 
 docReady(() => {
-  let uid = Number(getUID())
-  if (!uid || isNaN(uid)) {
+  const uid = getUID()
+  if (!uid || isNaN(+uid)) {
     console.log('未获取到MCBBS用户ID')
-    return
-  }
-  getPIE(uid)
+  } else getPIE(uid)
 })
 //! 添加highcharts开源库
 addScript(
@@ -54,8 +52,8 @@ function getUID() {
   }
 }
 
-async function getPIE(uid: string | number) {
-  let $url = 'https://bbs-credit.vercel.app/api/credit/' + uid
+async function getPIE(uid: string) {
+  const $url = 'https://bbs-credit.vercel.app/api/credit/' + uid
   console.log('正在获取用户信息: ' + $url)
 
   try {
@@ -95,13 +93,13 @@ async function getPIE(uid: string | number) {
           type: 'pie',
           name: '积分占比',
           data: [
-            { name: '发帖数/' + post + '帖', y: Math.round(post / 3) },
-            { name: '主题数/' + thread + '帖', y: thread * 2 },
-            { name: '精华帖/' + digiest + '帖', y: digiest * 45 },
-            { name: '人气/' + popular + '点', y: popular * 3 },
-            { name: '贡献/' + contrib + '点', y: contrib * 10 },
-            { name: '爱心/' + heart + '颗', y: heart * 4 },
-            { name: '钻石/' + diamond + '颗', y: diamond * 2 },
+            { name: `发帖数/${post}帖`, y: Math.round(post / 3) },
+            { name: `主题数/${thread}帖`, y: thread * 2 },
+            { name: `精华帖/${digiest}帖`, y: digiest * 45 },
+            { name: `人气/${popular}点`, y: popular * 3 },
+            { name: `贡献/${contrib}点`, y: contrib * 10 },
+            { name: `爱心/${heart}颗`, y: heart * 4 },
+            { name: `钻石/${diamond}颗`, y: diamond * 2 },
           ],
         },
       ],

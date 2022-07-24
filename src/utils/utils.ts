@@ -2,16 +2,14 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 16:56:48
+ * @LastEditTime: 2022-07-24 17:39:38
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
 /** 当文档准备完毕时调用回调，若文档已经准备完毕，则马上调用回调 */
 export function docReady(fn: () => unknown): void {
   if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', () => {
-      if (document.readyState === 'interactive') fn()
-    })
+    window.addEventListener('DOMContentLoaded', fn)
   } else {
     fn()
   }
@@ -21,7 +19,7 @@ export async function docReadyAsync<T>(fn: () => T) {
   const cb = new Promise<void>((res) => {
     if (document.readyState === 'loading') {
       window.addEventListener('DOMContentLoaded', () => {
-        if (document.readyState === 'interactive') res()
+        res()
       })
     } else {
       res()
