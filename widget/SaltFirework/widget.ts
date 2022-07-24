@@ -4,7 +4,7 @@ import { randomChoice, docReady } from 'Utils/utils'
  * @Author: Salt
  * @Date: 2022-07-23 17:00:54
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 20:01:44
+ * @LastEditTime: 2022-07-24 20:13:07
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\SaltFirework\widget.ts
  */
@@ -34,9 +34,9 @@ let hueDiff: number
 //! 粒子效果数量
 let count: number
 const baseRange = [1, 4] // 粒子大小
-const baseSpeed = [0.6, 2, 3] // 粒子最低速度
-const fallSpeed = 1.2 / 60 // 粒子下坠速度
-const fadeSpeed = 0.75 // 粒子消失速度
+const baseSpeed = [0.3, 2, 3] // 粒子最低速度
+const fallSpeed = 1.1 / 60 // 粒子下坠速度
+const fadeSpeed = 0.65 // 粒子消失速度
 const tail = 15 // 尾迹
 /**创建canvas */
 const canvas = document.createElement('canvas')
@@ -133,7 +133,7 @@ function createFireworks(x: number, y: number) {
       ),
       hue: hueRandom(),
       bright: rightRandom(72, 16),
-      alpha: rightRandom(75, 20),
+      alpha: rightRandom(75, 30),
     })
   }
   function hueRandom() {
