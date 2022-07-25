@@ -18,6 +18,7 @@ export interface BBSCredit {
   star: number
   credit: number
 }
+/** Litwak.913的论坛用户信息API响应值 */
 export interface BBSUser {
   uid: number
   nickname: string | null
