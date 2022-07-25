@@ -17,7 +17,7 @@ export const defaultOption: Options = {
   //! 右下角显示的版权信息
   credits: {
     href: 'https://mcbbs.wiki/wiki/U:Salt_lovely',
-    text: '小工具由Salt_lovely制作，Litwak.913修复，使用了highcharts开源库',
+    text: '小工具由Salt_lovely制作，使用了Litwak.913的论坛用户信息API和highcharts开源库',
   },
   //! 绘图基本设置
   plotOptions: {
