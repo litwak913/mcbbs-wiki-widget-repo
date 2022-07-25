@@ -8,10 +8,10 @@
  */
 import SaltOutsideMusicLoader from './SaltOutsideMusicLoader'
 import SaltFirework from './SaltFirework'
-// import getMCBBSCredit from './getMCBBSCredit'
+import getMCBBSCredit from './getMCBBSCredit'
 
 export default [
   { title: 'SaltOutsideMusicLoader', Component: SaltOutsideMusicLoader },
   { title: 'SaltFirework', Component: SaltFirework },
-  // { title: 'getMCBBSCredit', Component: getMCBBSCredit },
+  { title: 'getMCBBSCredit', Component: getMCBBSCredit },
 ] as { title: string; Component: () => JSX.Element }[]
