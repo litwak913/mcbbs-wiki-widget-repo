@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 12:22:28
+ * @LastEditTime: 2022-07-25 22:58:50
  * @Description: 说明文档
  * @FilePath: \mcbbs-wiki-widget-repo\README.md
 -->
@@ -13,8 +13,12 @@ MCBBS微件统一仓库。
 ## 开发需要
 
 1. 一台性能尚可的电脑，安装了nodejs、git、npm，最好安装了yarn
-2. 推荐使用vscode之类的编程软件
-3. 控制台输入`yarn`拉取依赖
+2. 推荐使用vscode之类的编程软件，如果是vscode，盐推荐安装以下插件：
+  1. ESLint - 代码质量检查
+  2. Prettier - 代码格式化工具
+  3. koroFileHeader - 文件头信息生成插件
+  4. Code Spell Checker - 拼写错误校验
+3. 控制台输入`yarn`拉取依赖——这一步很重要
 
 ## 修改微件
 
@@ -49,7 +53,17 @@ export default [
 </script>
 ```
 
+## 待办事项
+
+1. 寻找一种更加简便的微件编译方式，而不是输入一长串指令（`yarn build:SaltWidget`）。
+2. 引入eslint，检验代码质量
+
 ## 借物表
 
-- 部分脚手架代码来源于其他[开源脚手架](https://gitee.com/moushu/ms-esbuild-react-scaffold)，以木兰宽松许可证引入。
+- 部分脚手架代码来源于其他[开源脚手架](https://gitee.com/moushu/ms-esbuild-react-scaffold)，以木兰宽松许可证引入；也感谢Moushudyx搭建脚手架方面的支持。
 - 部分工具函数来源于盐以前的个人作品。
+
+## 已有微件：
+- SaltOutsideMusicLoader，嵌入网易云音乐
+- SaltFirework，点击页面放烟花
+- getMCBBSCredit，绘制MCBBS用户积分饼图
