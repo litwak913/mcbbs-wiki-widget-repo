@@ -62,7 +62,11 @@ async function getPIE(uid: string) {
     // const { credits: creditsObj, activites, nickname } = {"nickname":"混乱","credits":{"heart":0,"contribute":165,"diamond":3447,"popularity":11428,"credit":46618,"nugget":10607,"gem":11,"ingot":0,"star":1},"activites":{"post":6791,"thread":577,"digiest":4,"userGroups":["admin","artist","super_moderator"],"userGroupsText":["管理员","Lv.Inf 艺术家","超级版主"],"currentGroup":"admin","currentGroupText":"管理员"},"locked":false}
     // 线上使用
     const res = await fetch($url)
-    const { credits: creditsObj, activites, nickname } :BBSUser = await res.json()
+    const {
+      credits: creditsObj,
+      activites,
+      nickname,
+    }: BBSUser = await res.json()
     const {
       /** 回帖 */
       post,
