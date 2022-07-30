@@ -31,7 +31,8 @@
     "widget": "node script/createWidget.js",
     "build:SaltOutsideMusicLoader": "node script/bundle.js --SaltOutsideMusicLoader",
     "build:SaltFirework": "node script/bundle.js --SaltFirework",
-    "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit"
+    "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit",
+    "build:RandomMemesImg": "node script/bundle.js --RandomMemesImg"
   },
   "keywords": [
     "wiki"
