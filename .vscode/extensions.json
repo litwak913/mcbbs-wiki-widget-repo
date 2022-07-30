@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "davidanson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "obkoro1.korofileheader",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}
