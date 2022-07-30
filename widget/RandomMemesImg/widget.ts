@@ -18,7 +18,7 @@ docReady(async () => {
   if (message) {
     const link = document.createElement('a')
     const image = document.createElement('img')
-    image.src = `https://mcbbs.wiki/${meme.path}`
+    image.src = `https://mcbbs.wiki${meme.path}`
     link.href = `https://mcbbs.wiki/wiki/${meme.page}`
     loading?.remove()
     link.appendChild(image)
