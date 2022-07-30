@@ -54,7 +54,7 @@ function getUID() {
 }
 
 async function getPIE(uid: string) {
-  const $url = 'https://bbs-credit.vercel.app/api/credit/' + uid
+  const $url = 'https://mcbbs.wiki/913-api/users/' + uid
   // console.log('正在获取用户信息: ', $url)
 
   try {
