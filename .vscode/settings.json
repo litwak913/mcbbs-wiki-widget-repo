@@ -27,6 +27,8 @@
         "pubdir",
         "redbg",
         "sirv",
+        "topsign",
+        "topsignitem",
         "tsutils",
         "userpie",
         "whitebg",
