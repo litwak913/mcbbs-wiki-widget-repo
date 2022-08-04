@@ -25,23 +25,16 @@ docReady(() => {
   }
   const current = document.getElementById('current-theme')
   const theme = localStorage.getItem('theme')
+  const buttons = document.getElementsByClassName(
+    'theme-switch-button'
+  ) as HTMLCollectionOf<HTMLDivElement>
   if (theme) {
     current!.innerHTML = `Current:${theme}`
   }
-  const switcher = document.getElementById('theme-switcher')
-  const winter = document.createElement('div')
-  winter.onclick = switchWinter
-  winter.style.backgroundColor = '#4d82ff'
-  winter.className = 'theme-switch-button'
-  const summer = document.createElement('div')
-  summer.className = 'theme-switch-button'
-  summer.style.backgroundColor = '#70ba5e'
-  summer.onclick = switchSummer
-  const nether = document.createElement('div')
-  nether.style.backgroundColor = '#ae210f'
-  nether.className = 'theme-switch-button'
-  nether.onclick = switchNether
-  switcher?.appendChild(winter)
-  switcher?.appendChild(summer)
-  switcher?.appendChild(nether)
+  buttons[0].style.backgroundColor = '#4d82ff'
+  buttons[0].onclick = switchWinter
+  buttons[1].style.backgroundColor = '#70ba5e'
+  buttons[1].onclick = switchSummer
+  buttons[2].style.backgroundColor = '#ae210f'
+  buttons[2].onclick = switchNether
 })

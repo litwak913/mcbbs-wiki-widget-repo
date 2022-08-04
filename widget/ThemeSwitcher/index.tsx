@@ -8,7 +8,11 @@ export default () => {
   return (
     <>
       <div id="current-theme"></div>
-      <div id="theme-switcher"></div>
+      <div id="theme-switcher">
+        <div className="theme-switch-button"></div>
+        <div className="theme-switch-button"></div>
+        <div className="theme-switch-button"></div>
+      </div>
     </>
   )
 }
