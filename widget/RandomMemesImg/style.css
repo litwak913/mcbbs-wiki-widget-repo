@@ -1,13 +1,12 @@
 #memesimg {
   width: 400px;
   height: 400px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #memesimg a img {
   max-width: 400px;
   max-height: 400px;
   object-fit: cover;
 }
-

@@ -10,10 +10,12 @@ import SaltOutsideMusicLoader from './SaltOutsideMusicLoader'
 import SaltFirework from './SaltFirework'
 import getMCBBSCredit from './getMCBBSCredit'
 import RandomMemesImg from './RandomMemesImg'
+import ThemeSwitcher from './ThemeSwitcher'
 
 export default [
   { title: 'SaltOutsideMusicLoader', Component: SaltOutsideMusicLoader },
   { title: 'SaltFirework', Component: SaltFirework },
   { title: 'getMCBBSCredit', Component: getMCBBSCredit },
   { title: 'RandomMemesImg', Component: RandomMemesImg },
+  { title: 'ThemeSwitcher', Component: ThemeSwitcher },
 ] as { title: string; Component: () => JSX.Element }[]

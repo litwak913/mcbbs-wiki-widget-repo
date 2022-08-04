@@ -1,0 +1,9 @@
+.theme-switch-button {
+  width: 20px;
+  height: 20px;
+  background: black;
+  margin-right: 10px;
+}
+#theme-switcher {
+  display: inline-flex;
+}

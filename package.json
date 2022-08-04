@@ -32,7 +32,8 @@
     "build:SaltOutsideMusicLoader": "node script/bundle.js --SaltOutsideMusicLoader",
     "build:SaltFirework": "node script/bundle.js --SaltFirework",
     "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit",
-    "build:RandomMemesImg": "node script/bundle.js --RandomMemesImg"
+    "build:RandomMemesImg": "node script/bundle.js --RandomMemesImg",
+    "build:ThemeSwitcher": "node script/bundle.js --ThemeSwitcher"
   },
   "keywords": [
     "wiki"
