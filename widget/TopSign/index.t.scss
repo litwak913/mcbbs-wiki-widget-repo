@@ -1,0 +1,14 @@
+.topsign {
+  position: relative;
+  height: 65px;
+  overflow: hidden;
+  // overflow: visible;
+  box-shadow: 0 0 0 1px #9999;
+  > * {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    top: 0;
+    text-align: center;
+  }
+}
