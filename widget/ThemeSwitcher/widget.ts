@@ -6,31 +6,29 @@
  * @FilePath: /mcbbs-wiki-widget-repo/widget/ThemeSwitcher/widget.ts
  * @Description: 切换主题
  */
+import { read, write } from 'Utils/storage'
 import { docReady } from 'Utils/utils'
 // 你可能需要一些工具函数，比如这个DOM加载完毕后执行代码的方法
 
 docReady(() => {
-  function switchTheme(theme: string) {
-    localStorage.setItem('theme', theme)
+  function switchSummer() {
+    write('theme', 'summer')
     location.reload()
   }
-  function switchSummer() {
-    switchTheme('summer')
-  }
   function switchWinter() {
-    switchTheme('winter')
+    write('theme', 'winter')
+    location.reload()
   }
   function switchNether() {
-    switchTheme('nether')
+    write('theme', 'nether')
+    location.reload()
   }
   const current = document.getElementById('current-theme')
-  const theme = localStorage.getItem('theme')
+  const theme = read('theme', 'summer')
   const buttons = document.getElementsByClassName(
     'theme-switch-button'
   ) as HTMLCollectionOf<HTMLDivElement>
-  if (theme) {
-    current!.innerHTML = `Current:${theme}`
-  }
+  current!.innerHTML = `Current:${theme}`
   buttons[0].style.backgroundColor = '#4d82ff'
   buttons[0].onclick = switchWinter
   buttons[1].style.backgroundColor = '#70ba5e'
