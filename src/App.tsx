@@ -12,23 +12,31 @@ import { addScript } from 'Utils/resource'
 import { TextIcon } from './components/TextIcon'
 
 addScript('https://cdn.bootcss.com/jquery/2.2.2/jquery.js', false, 'jquery')
-
+function change(event:any) {console.log(event.target.value)}
 export default () => (
-  <div className="mcbbs-wiki-widget-list">
-    {widget.map(({ title, Component }) => (
-      <div key={title} className="mcbbs-wiki-widget-item">
-        <h2>
-          <a
-            href={`//mcbbs.wiki/wiki/Widget:${title}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TextIcon txt="微件" />
-            {title}
-          </a>
-        </h2>
-        <Component />
-      </div>
-    ))}
+  <div>
+    <select name="widget" onChange={change}>
+      {widget.map(({ title }) => (
+        <option value={title}>{title}</option>
+      ))}
+    </select>
+    <div className="mcbbs-wiki-widget-list">
+      {widget.map(({ title, Component }) => (
+        <div key={title} className="mcbbs-wiki-widget-item">
+          <h2>
+            <a
+              href={`//mcbbs.wiki/wiki/Widget:${title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              
+              <TextIcon txt="微件" />
+              {title}
+            </a>
+          </h2>
+          <Component />
+        </div>
+      ))}
+    </div>
   </div>
 )
