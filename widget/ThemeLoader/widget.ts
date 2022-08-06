@@ -12,7 +12,7 @@ docReady(() => {
   console.log('[913ThemeLoader] 加载主题中')
   let theme = read('theme', 'summer')
   console.log(`[913ThemeLoader] 使用主题:${theme}`)
-  const cssurl = `/index.php?title=MediaWiki:Theme-${theme}.css&action=raw&ctype=text/css`
+  const cssurl = `https://mcbbs.wiki/index.php?title=MediaWiki:Theme-${theme}.css&action=raw&ctype=text/css`
   console.log(`[913ThemeLoader] 将要引入的CSS:${cssurl}`)
   const style = document.createElement('link')
   style.rel = 'stylesheet'
