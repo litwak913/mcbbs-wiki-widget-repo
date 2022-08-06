@@ -35,7 +35,8 @@
     "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit",
     "build:RandomMemesImg": "node script/bundle.js --RandomMemesImg",
     "build:ThemeSwitcher": "node script/bundle.js --ThemeSwitcher",
-    "build:TopSign": "node script/bundle.js --TopSign"
+    "build:TopSign": "node script/bundle.js --TopSign",
+    "build:ThemeLoader": "node script/bundle.js --ThemeLoader"
   },
   "keywords": [
     "wiki"

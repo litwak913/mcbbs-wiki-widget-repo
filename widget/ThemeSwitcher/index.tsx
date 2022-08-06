@@ -1,4 +1,12 @@
-// index.tsx 测试页面
+/*
+ * @Author: litwak913 litwak913@qq.com
+ * @Date: 2022-08-06 17:55:00
+ * @LastEditors: litwak913 litwak913@qq.com
+ * @LastEditTime: 2022-08-06 22:11:46
+ * @FilePath: /mcbbs-wiki-widget-repo/widget/ThemeSwitcher/index.tsx
+ * @Description: ThemeSwitcher 测试页面
+ */
+
 import React from 'react'
 import './widget'
 import './style.css'
