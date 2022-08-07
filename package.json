@@ -34,7 +34,9 @@
     "build:SaltFirework": "node script/bundle.js --SaltFirework",
     "build:getMCBBSCredit": "node script/bundle.js --getMCBBSCredit",
     "build:RandomMemesImg": "node script/bundle.js --RandomMemesImg",
-    "build:TopSign": "node script/bundle.js --TopSign"
+    "build:ThemeSwitcher": "node script/bundle.js --ThemeSwitcher",
+    "build:TopSign": "node script/bundle.js --TopSign",
+    "build:ThemeLoader": "node script/bundle.js --ThemeLoader"
   },
   "keywords": [
     "wiki"
