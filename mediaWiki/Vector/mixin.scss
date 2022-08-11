@@ -1,0 +1,6 @@
+
+// 无边框
+@mixin noBorder {
+    border: none;
+    border-width: 0;
+  }
