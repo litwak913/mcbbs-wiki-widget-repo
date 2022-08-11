@@ -10,7 +10,9 @@ import { docReady } from 'Utils/utils'
 import { MemeImg } from './memeImg'
 // 你可能需要一些工具函数，比如这个DOM加载完毕后执行代码的方法
 docReady(async () => {
-  const memeRes = await fetch('https://mcbbs.wiki/913-api/imgs?type=json')
+  const memeRes = await fetch(
+    'https://mcbbs.wiki/913-api/imgs?type=json&size=normal'
+  )
   const meme: MemeImg = await memeRes.json()
   console.log(meme)
   const message = document.getElementById('memesimg')
@@ -18,7 +20,7 @@ docReady(async () => {
   if (message) {
     const link = document.createElement('a')
     const image = document.createElement('img')
-    image.src = `https://mcbbs.wiki/${meme.path}`
+    image.src = `https://mcbbs.wiki${meme.path}`
     link.href = `https://mcbbs.wiki/wiki/${meme.page}`
     loading?.remove()
     link.appendChild(image)

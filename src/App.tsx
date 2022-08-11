@@ -13,7 +13,6 @@ import { addScript } from 'Utils/resource'
 import { TextIcon } from './components/TextIcon'
 
 addScript('https://cdn.bootcss.com/jquery/2.2.2/jquery.js', false, 'jquery')
-
 export default () => (
   <>
     <div className="mcbbs-wiki-widget-list">
