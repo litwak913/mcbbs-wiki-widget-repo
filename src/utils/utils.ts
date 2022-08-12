@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-12 23:40:43
+ * @LastEditTime: 2022-08-12 23:59:50
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
@@ -97,16 +97,13 @@ export async function waitTill(what: () => unknown, interval = 500) {
   }
 }
 
-const i = document.createElement('input')
-i.setAttribute(
-  'style',
-  'pointer-events:none;visibility:hidden;opacity:0;position:fixed;'
-)
+const i = document.createElement('textarea')
+i.setAttribute('style', 'pointer-events:none;opacity:0;position:fixed;')
 export function copy(txt: string) {
-  document.body.appendChild(i)
+  if (typeof txt !== 'string') txt = `${txt}`
   i.value = txt
+  document.body.appendChild(i)
   i.select()
-  document.execCommand('Copy')
-  i.blur()
+  document.execCommand('copy')
   i.remove()
 }
