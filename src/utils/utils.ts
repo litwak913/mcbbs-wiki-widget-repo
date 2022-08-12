@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-24 17:39:38
+ * @LastEditTime: 2022-08-12 23:40:43
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
@@ -95,4 +95,18 @@ export async function waitTill(what: () => unknown, interval = 500) {
   while (!what()) {
     await sleep(interval)
   }
+}
+
+const i = document.createElement('input')
+i.setAttribute(
+  'style',
+  'pointer-events:none;visibility:hidden;opacity:0;position:fixed;'
+)
+export function copy(txt: string) {
+  document.body.appendChild(i)
+  i.value = txt
+  i.select()
+  document.execCommand('Copy')
+  i.blur()
+  i.remove()
 }

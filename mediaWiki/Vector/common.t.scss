@@ -9,21 +9,26 @@ $content-top: calc(
   #{$content-book-border} + #{$top-height + $top-gap}
 ); // 主体部分高度（顶部+书页背景顶部边框）
 
-$book-border-left-top: url(//mcbbs.wiki/salt/book/left-top.png);
-$book-border-top: url(//mcbbs.wiki/salt/book/top.png);
-$book-border-right-top: url(//mcbbs.wiki/salt/book/right-top.png);
-
-$book-border-left: url(//mcbbs.wiki/salt/book/left.png); // 左侧图片
-$book-border-right: url(//mcbbs.wiki/salt/book/right.png); // 右侧图片
-
-$book-border-left-bottom: url(//mcbbs.wiki/salt/book/left-bottom.png);
-$book-border-bottom: url(//mcbbs.wiki/salt/book/bottom.png);
-$book-border-right-bottom: url(//mcbbs.wiki/salt/book/right-bottom.png);
-
 :root {
   --theme-color: #a8cdff;
   --theme-bg-img: url(//mcbbs.wiki/salt/summer/body_bg.jpg);
   --theme-topbar-img: url(//mcbbs.wiki/salt/summer/top_bg.png);
+  /*左上图片*/
+  --book-border-left-top: url(//mcbbs.wiki/salt/book/left-top.png);
+  /*上方图片*/
+  --book-border-top: url(//mcbbs.wiki/salt/book/top.png);
+  /*右上图片*/
+  --book-border-right-top: url(//mcbbs.wiki/salt/book/right-top.png);
+  /*左侧图片*/
+  --book-border-left: url(//mcbbs.wiki/salt/book/left.png);
+  /*右侧图片*/
+  --book-border-right: url(//mcbbs.wiki/salt/book/right.png);
+  /*左下图片*/
+  --book-border-left-bottom: url(//mcbbs.wiki/salt/book/left-bottom.png);
+  /*下方图片*/
+  --book-border-bottom: url(//mcbbs.wiki/salt/book/bottom.png);
+  /*右下图片*/
+  --book-border-right-bottom: url(//mcbbs.wiki/salt/book/right-bottom.png);
   --bgtop: 46px;
   --bgleft: 20px;
   --lightcolor: #fdf6e6;
@@ -285,8 +290,8 @@ $head-right-offset: 12px; // 右侧导航栏偏移量
   margin-bottom: calc(#{$content-book-border * 2} + 5rem);
   overflow: visible;
   position: relative;
-  background: $book-border-left left top repeat-y,
-    $book-border-right right top repeat-y;
+  background: var(--book-border-left) left top repeat-y,
+    var(--book-border-right) right top repeat-y;
   background-color: var(--bgcolor);
   @include noBorder();
   &::after,
@@ -302,16 +307,16 @@ $head-right-offset: 12px; // 右侧导航栏偏移量
   &::before {
     // 上边
     top: -$content-book-border;
-    background: $book-border-left-top left top no-repeat,
-      $book-border-right-top right top no-repeat,
-      $book-border-top top repeat-x content-box;
+    background: var(--book-border-left-top) left top no-repeat,
+      var(--book-border-right-top) right top no-repeat,
+      var(--book-border-top) top repeat-x content-box;
   }
   &::after {
     // 下边
     bottom: -$content-book-border;
-    background: $book-border-left-bottom left bottom no-repeat,
-      $book-border-right-bottom right bottom no-repeat,
-      $book-border-bottom bottom repeat-x content-box;
+    background: var(--book-border-left-bottom) left bottom no-repeat,
+      var(--book-border-right-bottom) right bottom no-repeat,
+      var(--book-border-bottom) bottom repeat-x content-box;
   }
 }
 /* 页脚 */
@@ -323,20 +328,6 @@ $head-right-offset: 12px; // 右侧导航栏偏移量
   &:hover {
     /*鼠标滑过，背景变白*/
     background: rgba(255, 255, 255, 0.7);
-  }
-}
-/* 滚动公告 */
-.topsign {
-  position: relative;
-  width: 100%;
-  height: 65px;
-  overflow: hidden;
-  > * {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    text-align: center;
   }
 }
 /* 适配 */
@@ -357,6 +348,7 @@ $head-right-offset: 12px; // 右侧导航栏偏移量
   display: none;
   height: 0;
 }
+/* 其他适配 */
 #catlinks, // 页面底部分类
 pre,
 table.wikitable,
