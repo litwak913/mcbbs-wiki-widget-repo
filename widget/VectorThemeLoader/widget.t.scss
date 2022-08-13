@@ -1,0 +1,50 @@
+$fontSize: 1rem;
+
+.salt-panel.style-list {
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: var(--lightcolor, #f9f9f9);
+  box-shadow: 1px 2px 5px 0 #9996;
+  font-size: $fontSize;
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+  .style-list-item {
+    display: block;
+    min-width: 196px;
+    margin: 4px 0;
+    list-style: none;
+    overflow: hidden;
+    // .style-list-item-title {
+    // }
+    .theme-list {
+      padding: 2px 4px;
+      margin: 0;
+      overflow: hidden;
+      .theme-list-item {
+        padding: 4px 8px;
+        list-style: none;
+        overflow: hidden;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+          background-color: #9991;
+        }
+        &:active {
+          background-color: #9993;
+        }
+        .theme-list-item-img {
+          display: inline-block;
+          width: $fontSize;
+          height: $fontSize;
+          vertical-align: middle;
+          margin-right: 4px;
+        }
+        .theme-list-item-name {
+          display: inline;
+        }
+      }
+    }
+  }
+}

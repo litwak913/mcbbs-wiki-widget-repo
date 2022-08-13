@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-12 23:59:50
+ * @LastEditTime: 2022-08-13 16:26:08
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
@@ -106,4 +106,19 @@ export function copy(txt: string) {
   i.select()
   document.execCommand('copy')
   i.remove()
+}
+/** 监听鼠标是否点到某个元素外面去了 */
+export function clickOutside(el: Element, callback: () => unknown): () => void {
+  const cb = (ev: MouseEvent) => {
+    const { target } = ev
+    if (!(target instanceof Element)) return
+    if (target === el) return
+    let obj = target.parentElement
+    while (obj && obj !== el && obj.parentElement) {
+      obj = obj.parentElement
+    }
+    if (obj !== el) callback()
+  }
+  window.addEventListener('click', cb, true)
+  return () => window.removeEventListener('click', cb)
 }

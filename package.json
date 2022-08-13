@@ -37,7 +37,7 @@
     "build:ThemeSwitcher": "node script/bundle.js --ThemeSwitcher",
     "build:TopSign": "node script/bundle.js --TopSign",
     "build:ThemeLoader": "node script/bundle.js --ThemeLoader",
-    "build:Vector-ThemeLoader": "node script/bundle.js --VectorThemeLoader"
+    "build:VectorThemeLoader": "node script/bundle.js --VectorThemeLoader"
   },
   "keywords": [
     "wiki"

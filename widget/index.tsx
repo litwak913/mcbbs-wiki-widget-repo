@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-23 15:48:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-13 13:14:08
+ * @LastEditTime: 2022-08-13 13:27:27
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\index.tsx
  */
@@ -23,5 +23,5 @@ export default [
   { title: 'ThemeSwitcher', Component: ThemeSwitcher },
   { title: 'TopSign', Component: TopSign },
   { title: 'ThemeLoader', Component: ThemeLoader },
-  { title: 'VectorThemeLoader', Component: VectorThemeLoader },
+  { title: 'Vector-ThemeLoader', Component: VectorThemeLoader },
 ] as { title: string; Component: () => JSX.Element }[]

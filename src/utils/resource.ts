@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-23 16:53:23
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-13 13:20:43
+ * @LastEditTime: 2022-08-13 16:45:50
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\resource.ts
  */
@@ -24,6 +24,7 @@ export function addStyleUrl(url: string, key?: string) {
     style = document.createElement('link')
     style.rel = 'stylesheet'
     style.type = 'text/css'
+    if (key) style.id = key
   }
   style.href = url
   document.head.appendChild(style)

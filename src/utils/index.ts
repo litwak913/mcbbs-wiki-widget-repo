@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-23 15:26:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-07-23 17:04:50
+ * @LastEditTime: 2022-08-13 13:51:25
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\index.ts
  */
@@ -16,4 +16,5 @@ export {
   scrollYToEl,
   handleChildren,
   randomChoice,
+  copy,
 } from './utils'
