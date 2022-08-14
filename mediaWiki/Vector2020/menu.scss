@@ -1,0 +1,33 @@
+.vector-menu-dropdown {
+  li a {
+    color: #4caf50;
+  }
+  h3 {
+    background-image: none !important;
+  }
+}
+
+.vector-user-links .vector-user-menu-more #pt-userpage-2 span {
+  color: white;
+}
+
+.vector-menu-tabs {
+  background-image: none;
+  .selected {
+    background: #ffffff;
+    border-bottom: {
+      color: orange !important;
+      width: 3px;
+      style: solid;
+    }
+  }
+  a {
+    background-image: none;
+  }
+  li {
+    background-image: none;
+    a {
+      color: #4caf50;
+    }
+  }
+}

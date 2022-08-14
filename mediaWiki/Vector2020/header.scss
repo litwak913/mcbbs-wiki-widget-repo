@@ -1,0 +1,25 @@
+.mw-header {
+  background-color: #4caf50;
+  padding: 0 50px;
+  margin-top: 0;
+  box-shadow: 2px 2px 8px rgba(76, 175, 80, 0.35),
+    -2px 2px 8px rgba(76, 175, 80, 0.35);
+  --linecolor: #ffffff00;
+  a {
+    color: white;
+  }
+}
+#mw-sidebar-button:before,
+.oo-ui-icon-bell.mw-echo-notifications-badge,
+.oo-ui-icon-tray.mw-echo-notifications-badge,
+.mw-ui-icon-wikimedia-userAvatar:before,
+.mw-ui-icon-wikimedia-userAvatar:after,
+.mw-ui-icon-wikimedia-search:before {
+  opacity: 1;
+  filter: invert(100%);
+}
+@media screen and (max-width: 720px) {
+  #mw-sidebar-button {
+    display: none;
+  }
+}
