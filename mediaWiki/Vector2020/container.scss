@@ -1,0 +1,47 @@
+.mw-page-container {
+  padding: 0.05px 0px;
+}
+@media screen and (max-width: 1440px) {
+  .mw-workspace-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .mw-page-container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.mw-body {
+  border-top: none;
+  min-height: 650px;
+  border-radius: 0.4rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.1);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mw-content-container {
+  max-width: none;
+}
+.mw-article-toolbar-container {
+  max-width: none;
+}
+.mw-checkbox-hack-checkbox:checked
+  ~ .mw-workspace-container
+  .mw-content-container {
+  margin-left: 11.5em;
+}
+.mw-checkbox-hack-checkbox:checked
+  ~ .mw-workspace-container
+  .mw-article-toolbar-container {
+  margin-left: 11.5em;
+}
+.mw-footer-container .mw-content-container {
+  margin-left: auto !important;
+}

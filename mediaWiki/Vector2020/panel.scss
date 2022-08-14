@@ -1,0 +1,22 @@
+@media screen and (max-width: 720px) {
+  #mw-panel {
+    display: none;
+  }
+}
+#mw-panel {
+  left: 0;
+  background-image: none;
+  .portal.salt-open .vector-menu-content {
+    max-height: none;
+  }
+  nav:first-child .vector-menu-content {
+    margin-left: 0em;
+  }
+}
+.mw-sidebar-action {
+  margin: 0 0;
+}
+.mw-sidebar-action-link {
+  font-size: 0.9em;
+  font-weight: unset;
+}
