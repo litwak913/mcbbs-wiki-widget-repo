@@ -2,11 +2,12 @@
  * @Author: Salt
  * @Date: 2022-08-13 11:05:35
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-13 16:57:34
+ * @LastEditTime: 2022-08-14 13:34:07
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\VectorThemeLoader\widget.ts
  */
 //! https://github.com/mcbbs-wiki/mcbbs-wiki-widget-repo/tree/master/widget/VectorThemeLoader
+import { constants } from 'buffer'
 import { addStyle, loadWikiStyle } from 'Utils/resource'
 import { readAndListen, write } from 'Utils/storage'
 import { createPanel } from './SwitchPanel'
@@ -30,45 +31,48 @@ interface ThemeMapStyle {
   default: Theme
   /** 当前皮肤的其他主题样式 */
   other: { [otherTheme: string]: Theme }
-  /** 当前皮肤旧版的样式 */
-  legacy?: ThemeMapStyle
-}
-
-const themeMap: ThemeMap = {
-  // MCBBS-v2的书页风格
-  book: {
-    name: '仿MCBBS书页风格',
-    common: 'MediaWiki:Vector-Book.css',
-    default: {
-      name: '夏季主题',
-      css: 'MediaWiki:Vector-Book-Summer.css',
-      img: 'https://mcbbs.wiki/images/2/2f/艺术家与认证用户回帖图标.png',
-    },
-    other: {
-      nether: { name: '下界主题', css: 'MediaWiki:Vector-Book-Nether.css' },
-      winter: { name: '冬季主题', css: 'MediaWiki:Vector-Book-Winter.css' },
-    },
-    legacy: {
-      name: '',
-      common: 'MediaWiki:Vector-Legacy-Book.css',
-      default: { name: '夏季主题', css: 'MediaWiki:Vector-Book-Summer.css' },
-      other: {
-        nether: { name: '下界主题', css: 'MediaWiki:Vector-Book-Nether.css' },
-        winter: { name: '冬季主题', css: 'MediaWiki:Vector-Book-Winter.css' },
-      },
-    },
-  },
 }
 
 const isLegacy = document.body.classList.contains('skin-vector-legacy')
 
-const styleKey = 'skin-vector-style'
-const themeKey = 'skin-vector-theme'
+const themeMap: ThemeMap = isLegacy
+  ? {
+      // MCBBS-v2的书页风格
+      book: {
+        name: '仿MCBBS书页风格',
+        common: 'MediaWiki:Vector-Legacy-Book.css',
+        default: {
+          name: '夏季主题',
+          css: 'MediaWiki:Vector-Book-Summer.css',
+          img: 'https://mcbbs.wiki/images/2/2f/艺术家与认证用户回帖图标.png',
+        },
+        other: {
+          nether: { name: '下界主题', css: 'MediaWiki:Vector-Book-Nether.css' },
+          winter: { name: '冬季主题', css: 'MediaWiki:Vector-Book-Winter.css' },
+        },
+      },
+    }
+  : {
+      v4: {
+        name: '仿MCBBS v4风格',
+        common: 'MediaWiki:Vector-V4.css',
+        default: { name: '默认风格', css: 'MediaWiki:Vector-V4.css' },
+        other: {},
+      },
+    }
+
+const defaultStyle = Object.keys(themeMap)[0]
+
+const styleKey = isLegacy
+  ? 'mcbbs-wiki-skin-vector-legacy-style'
+  : 'mcbbs-wiki-skin-vector-style'
+const themeKey = isLegacy
+  ? 'mcbbs-wiki-skin-vector-legacy-theme'
+  : 'mcbbs-wiki-skin-vector-theme'
 
 /** 根据风格和主题名加载样式资源 */
 const loadThemeStyle = (style: string, theme: string) => {
-  const _styleMap = themeMap[style]
-  const styleMap = isLegacy ? _styleMap.legacy || _styleMap : _styleMap
+  const styleMap = themeMap[style] || themeMap[defaultStyle]
   // 加载当前皮肤的通用样式
   const currentCommonStyle = styleMap.common
   loadWikiStyle(currentCommonStyle, 'salt-wiki-style-common')
@@ -83,10 +87,10 @@ const loadThemeStyle = (style: string, theme: string) => {
 /** 加载主题样式功能初始化 */
 const initTheme = () => {
   // 初始化
-  const current = { style: 'book', theme: 'default' }
+  const current = { style: defaultStyle, theme: 'default' }
   const [style] = readAndListen({
     key: styleKey,
-    defaultValue: 'book',
+    defaultValue: defaultStyle,
     listener: (ev) => {
       if (ev.newValue) {
         current.style = ev.newValue
