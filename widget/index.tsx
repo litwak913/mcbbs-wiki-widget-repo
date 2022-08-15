@@ -22,6 +22,6 @@ export default [
   { title: 'RandomMemesImg', Component: RandomMemesImg },
   { title: 'ThemeSwitcher', Component: ThemeSwitcher },
   { title: 'TopSign', Component: TopSign },
-  { title: 'ThemeLoader', Component: ThemeLoader },
+//  { title: 'ThemeLoader', Component: ThemeLoader },
   { title: 'Vector-ThemeLoader', Component: VectorThemeLoader },
 ] as { title: string; Component: () => JSX.Element }[]
