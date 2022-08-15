@@ -1,0 +1,24 @@
+.mw-footer-container {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  background-color: #4caf50;
+  max-width: none;
+  padding: {
+    top: 0;
+    bottom: 40px;
+    left: 60px;
+    right: 60px;
+  }
+}
+#footer-info li {
+  color: #fff;
+}
+
+#footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.mw-footer {
+  border-top-width: 0px;
+}

@@ -1,0 +1,39 @@
+#p-personal {
+  /* 最顶部的信息栏 */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: $top-height;
+  padding: $topbar-padding $topbar-padding * 2;
+  background-image: var(--theme-topbar-img);
+  background-size: contain;
+  box-sizing: border-box;
+  opacity: 0.5;
+  font-size: 1rem;
+  transition: opacity 0.3s ease 0.5s;
+  &:hover {
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  ul {
+    // right: 0;
+    float: right;
+    li {
+      height: 1rem;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      line-height: 1rem;
+    }
+  }
+  #pt-notifications-alert,
+  #pt-notifications-notice {
+    margin-right: 0;
+  }
+}
+// 顶部的信息栏遮挡可视化编辑器
+.skin-vector .ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
+  /* 顶部的信息栏遮挡可视化编辑器 */
+  top: 2.5rem;
+}
