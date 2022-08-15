@@ -1,0 +1,19 @@
+// 适配
+@media screen and (max-width: 982px) {
+  /* 适配 */
+  #mw-panel {
+    left: 0;
+  }
+  #content {
+    margin-left: 10rem;
+    margin-right: 0;
+  }
+}
+// 杂项
+#mw-page-base,
+#mw-head-base {
+  background-color: transparent;
+  opacity: 0;
+  display: none;
+  height: 0;
+}

@@ -1,0 +1,74 @@
+$head-right-offset: 12px; // 右侧导航栏偏移量
+// 顶部栏
+#mw-head {
+  /* 顶部栏 */
+  top: $content-top;
+  padding: 0 $content-book-border * 1.5 - $head-right-offset 0
+    $content-book-border * 1.5;
+  width: calc(100% - #{$content-book-border * 3 - $head-right-offset});
+  #left-navigation,
+  #right-navigation {
+    margin-top: 0rem;
+    nav,
+    div,
+    ul,
+    span,
+    a {
+      background-image: none;
+      background-color: transparent;
+    }
+    li {
+      border-left: none;
+      border-right: none;
+      &:first-child {
+        border-left: 1px solid var(--linecolor);
+      }
+      &:last-child {
+        border-right: 1px solid var(--linecolor);
+      }
+    }
+    ul {
+      li {
+        height: 2.7rem;
+        background-image: linear-gradient(
+          0deg,
+          var(--linecolor) 0%,
+          var(--bgcolor) 20%
+        );
+        &:hover {
+          background-image: linear-gradient(
+            0deg,
+            var(--linecolor) 0%,
+            var(--bgcolor) 12%
+          );
+        }
+        a {
+          font-size: 0.875rem;
+          padding-top: 1rem;
+          text-align: center;
+        }
+        &.icon a {
+          padding-top: 2.5rem;
+        }
+      }
+      &.menu li {
+        background-image: linear-gradient(
+          0deg,
+          var(--linecolor) 0%,
+          var(--bgcolor) 12%
+        );
+        &:hover {
+          background-image: linear-gradient(
+            0deg,
+            var(--linecolor) 0%,
+            var(--bgcolor) 6%
+          );
+        }
+      }
+    }
+  }
+  #p-cactions .menu li {
+    border: 1px solid var(--linecolor);
+    background-color: var(--lightcolor);
+  }
+}

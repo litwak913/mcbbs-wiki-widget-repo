@@ -1,0 +1,68 @@
+/* 其他适配 */
+#catlinks, // 页面底部分类
+pre,
+table.wikitable,
+li.gallerybox div.thumb,
+.toc,
+.mw-rcfilters-ui-changesListWrapperWidget .mw-changeslist-legend, // 最近更改列表说明
+.mw-warning,
+.toccolours,
+table.navbox,
+#simpleSearch {
+  background-color: var(--lightcolor);
+}
+fieldset,
+ul,
+li,
+a,
+span,
+em,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-color: var(--linecolor) !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--fontfamily) !important;
+}
+#firstHeading {
+  margin-top: var(--bgtop);
+}
+.diff-deletedline {
+  border-color: var(--delete-linecolor) !important;
+}
+.diff-addedline {
+  border-color: var(--add-linecolor) !important;
+}
+#catlinks {
+  margin-bottom: 2px;
+}
+::selection {
+  background: var(--selection-color);
+  color: var(--selection-font-color);
+}
+::-moz-selection {
+  background: var(--selection-color);
+  color: var(--selection-font-color);
+}
+input,
+select {
+  background-color: var(--lightcolor);
+  border: 1px solid var(--linecolor);
+}
+
+body.mw-special-Preferences #siteNotice {
+  display: none;
+}
+.ve-active #bodyContent {
+  background-color: #ffffff;
+}

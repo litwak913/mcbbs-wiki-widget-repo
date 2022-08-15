@@ -1,0 +1,12 @@
+// 页脚
+#footer {
+  /* 页脚 */
+  padding-bottom: 0;
+  margin-top: $content-book-border;
+  clear: both;
+  transition: all 0.3s;
+  &:hover {
+    /*鼠标滑过，背景变白*/
+    background: rgba(255, 255, 255, 0.7);
+  }
+}

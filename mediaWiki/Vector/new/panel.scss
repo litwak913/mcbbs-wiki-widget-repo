@@ -9,6 +9,9 @@
   .portal.salt-open .vector-menu-content {
     max-height: none;
   }
+  .portal .vector-menu-content {
+    border-top: solid #4caf50 2px !important;
+  }
   nav:first-child .vector-menu-content {
     margin-left: 0em;
   }

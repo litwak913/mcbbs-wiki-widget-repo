@@ -1,4 +1,10 @@
 @import './mixin.scss';
 /* 新版书页样式 */
 body.skin-vector:not(.skin-vector-legacy) {
+  @import './new/header.scss';
+  @import './new/footer.scss';
+  @import './new/container.scss';
+  @import './new/menu.scss';
+  @import './new/panel.scss';
+  @import './new/utils.scss';
 }

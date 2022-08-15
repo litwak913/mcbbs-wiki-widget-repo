@@ -1,0 +1,12 @@
+/* 背景 */
+body {
+  background: var(--theme-bg-img) 0 0 no-repeat var(--theme-color);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  border-top: none;
+  font-family: var(--fontfamily);
+  * {
+    border-color: var(--linecolor);
+  }
+}

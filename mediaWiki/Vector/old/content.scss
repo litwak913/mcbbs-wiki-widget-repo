@@ -1,0 +1,40 @@
+// 主体
+#content {
+  /* 主体 */
+  top: $content-top;
+  min-height: 400px;
+  padding: 1px $content-book-border * 1.5;
+  margin-left: 11rem;
+  margin-right: 0.5rem;
+  margin-bottom: calc(#{$content-book-border * 2} + 5rem);
+  overflow: visible;
+  position: relative;
+  background: var(--book-border-left) left top repeat-y,
+    var(--book-border-right) right top repeat-y;
+  background-color: var(--bgcolor);
+  @include noBorder();
+  &::after,
+  &::before {
+    content: '';
+    left: 0;
+    height: $content-book-border;
+    width: calc(100% - #{$content-book-border * 2});
+    padding: 0 $content-book-border;
+    display: block;
+    position: absolute;
+  }
+  &::before {
+    // 上边
+    top: -$content-book-border;
+    background: var(--book-border-left-top) left top no-repeat,
+      var(--book-border-right-top) right top no-repeat,
+      var(--book-border-top) top repeat-x content-box;
+  }
+  &::after {
+    // 下边
+    bottom: -$content-book-border;
+    background: var(--book-border-left-bottom) left bottom no-repeat,
+      var(--book-border-right-bottom) right bottom no-repeat,
+      var(--book-border-bottom) bottom repeat-x content-box;
+  }
+}
