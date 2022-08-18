@@ -1,4 +1,7 @@
 @import './mixin.scss';
+:root {
+  --linecolor: #ccc;
+}
 /* 新版书页样式 */
 body.skin-vector:not(.skin-vector-legacy) {
   @import './new/header.scss';
