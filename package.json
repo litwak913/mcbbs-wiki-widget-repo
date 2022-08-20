@@ -14,6 +14,7 @@
     "@types/react-dom": "^17.0.13",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
+    "skinview3d": "^3.0.0",
     "esbuild": "^0.14.25",
     "esbuild-sass-plugin": "^2.2.4",
     "eslint": "^8.10.0",
@@ -37,7 +38,8 @@
     "build:ThemeSwitcher": "node script/bundle.js --ThemeSwitcher",
     "build:TopSign": "node script/bundle.js --TopSign",
     "build:ThemeLoader": "node script/bundle.js --ThemeLoader",
-    "build:VectorThemeLoader": "node script/bundle.js --VectorThemeLoader"
+    "build:VectorThemeLoader": "node script/bundle.js --VectorThemeLoader",
+    "build:SaltSkinPreviewer": "node script/bundle.js --SaltSkinPreviewer"
   },
   "keywords": [
     "wiki"

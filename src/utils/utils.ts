@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-01-26 00:03:14
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-13 16:26:08
+ * @LastEditTime: 2022-08-20 20:17:46
  * @Description: 杂项方法
  * @FilePath: \mcbbs-wiki-widget-repo\src\utils\utils.ts
  */
@@ -91,16 +91,23 @@ export function sleep(time = 500) {
   })
 }
 /** 等到方法返回的值为真值 */
-export async function waitTill(what: () => unknown, interval = 500) {
+export async function waitTill(
+  what: () => unknown,
+  interval = 500,
+  safeTime = 120000
+) {
+  const startTime = Date.now()
   while (!what()) {
     await sleep(interval)
+    if (Date.now() - startTime > safeTime && !what())
+      throw new Error('Out Of Time')
   }
 }
 
-const i = document.createElement('textarea')
-i.setAttribute('style', 'pointer-events:none;opacity:0;position:fixed;')
 export function copy(txt: string) {
   if (typeof txt !== 'string') txt = `${txt}`
+  const i = document.createElement('textarea')
+  i.setAttribute('style', 'pointer-events:none;opacity:0;position:fixed;')
   i.value = txt
   document.body.appendChild(i)
   i.select()
