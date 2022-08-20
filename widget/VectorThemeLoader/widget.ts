@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-13 11:05:35
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-14 13:34:07
+ * @LastEditTime: 2022-08-20 21:22:19
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\VectorThemeLoader\widget.ts
  */
@@ -26,7 +26,7 @@ interface ThemeMapStyle {
   /** 皮肤的名称 */
   name: string
   /** 当前皮肤的通用样式 */
-  common: string
+  common?: string
   /** 当前皮肤的默认主题样式 */
   default: Theme
   /** 当前皮肤的其他主题样式 */
@@ -40,7 +40,7 @@ const themeMap: ThemeMap = isLegacy
       // MCBBS-v2的书页风格
       book: {
         name: '仿MCBBS书页风格',
-        common: 'MediaWiki:Vector-Legacy-Book.css',
+        // common: 'MediaWiki:Vector-Legacy-Book.css',
         default: {
           name: '夏季主题',
           css: 'MediaWiki:Vector-Book-Summer.css',
@@ -55,7 +55,7 @@ const themeMap: ThemeMap = isLegacy
   : {
       v4: {
         name: '仿MCBBS v4风格',
-        common: 'MediaWiki:Vector-V4.css',
+        // common: 'MediaWiki:Vector-V4.css',
         default: { name: '默认风格', css: 'MediaWiki:Vector-V4.css' },
         other: {},
       },
@@ -75,7 +75,7 @@ const loadThemeStyle = (style: string, theme: string) => {
   const styleMap = themeMap[style] || themeMap[defaultStyle]
   // 加载当前皮肤的通用样式
   const currentCommonStyle = styleMap.common
-  loadWikiStyle(currentCommonStyle, 'salt-wiki-style-common')
+  if(currentCommonStyle) loadWikiStyle(currentCommonStyle, 'salt-wiki-style-common')
   // 加载当前主题
   const currentTheme =
     theme === 'default' || !styleMap.other[theme]
