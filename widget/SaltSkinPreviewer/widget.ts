@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-20 12:10:33
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-20 20:06:57
+ * @LastEditTime: 2022-08-20 22:11:50
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\SaltSkinPreviewer\widget.ts
  */
@@ -22,11 +22,8 @@ const filterWebsite = [
   'https://minotar.net/',
 ]
 
-addScript(
-  'https://cdn.jsdelivr.net/gh/Salt-lovely/skinview3d@0.0.2/bundles/skinview3d.bundle.js',
-  true,
-  'SaltSkinPreviewer'
-)
+//! addScript('https://cdn.jsdelivr.net/gh/Salt-lovely/skinview3d@0.0.2/bundles/skinview3d.bundle.js', true, 'SaltSkinPreviewer')
+addScript('https://mcbbs.wiki/salt/skinview.js', true, 'SaltSkinPreviewer')
 
 // 你可能需要一些工具函数，比如这个DOM加载完毕后执行代码的方法
 docReady(async () => {
