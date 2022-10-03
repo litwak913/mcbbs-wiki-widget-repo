@@ -1,4 +1,7 @@
-.vector-menu-dropdown {
+#mw-head .vector-menu-dropdown h3 {
+  background-image:none;
+}
+#p-cactions .vector-menu-content {
   li a {
     color: #4caf50;
   }
@@ -28,6 +31,9 @@
     background-image: none;
     a {
       color: #4caf50;
+    }
+    &.selected a {
+      color: #000000;
     }
   }
 }

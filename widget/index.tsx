@@ -23,5 +23,5 @@ export default [
   { title: 'ThemeSwitcher', Component: ThemeSwitcher },
   { title: 'TopSign', Component: TopSign },
   { title: 'SaltSkinPreviewer', Component: SaltSkinPreviewer },
-  { title: 'Vector-ThemeLoader', Component: VectorThemeLoader },
+  { title: 'Vector-ThemeLoader', Component: VectorThemeLoader }
 ] as { title: string; Component: () => JSX.Element }[]
