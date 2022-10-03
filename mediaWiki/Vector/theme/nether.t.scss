@@ -1,1 +1,5 @@
 @import '../mixin.scss';
+body.skin-vector {
+    --theme-bg-img: url(/salt/nether/body_bg.jpg);
+    --theme-topbar-img: url(/salt/nether/top_bg.png);
+}
