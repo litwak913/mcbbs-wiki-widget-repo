@@ -10,7 +10,7 @@ import type { Options } from 'highcharts'
 /** 饼图的默认设置 */
 export const defaultOption: Options = {
   //! 画板基本设置
-  chart: { backgroundColor: '#fbf2da', plotShadow: false },
+  chart: { backgroundColor: document.body.classList.contains('skin-vector-legacy') ? '#fbf2da':'#ffffff', plotShadow: false },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
   },
