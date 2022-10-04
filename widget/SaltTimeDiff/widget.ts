@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-10-04 14:17:22
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-04 18:15:53
+ * @LastEditTime: 2022-10-04 18:57:20
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\SaltTimeDiff\widget.ts
  */
@@ -12,6 +12,7 @@ import { docReady } from 'Utils/utils'
 //! 实时更新则额外加上 real-time ——结束时间会强制改为当前时间
 //! 更复杂的显示请额外加上 complex ——可以用CSS修改渲染样式
 //! 如果时间是UTC请额外加上 utc
+//! 简化输出请额外加上 simple
 //! ">{起始时间}SPLIT{结束时间}SPLIT{指令（d-天，h-小时，m-分钟，s-秒，M-毫秒）}</span>
 
 const UTCOffset = new Date().getTimezoneOffset() * 60 * 1000
@@ -59,11 +60,13 @@ function timeDiff({
   t2,
   cmd = 'd',
   cpx = false,
+  simple = false,
 }: {
   t1: Date
   t2: Date
   cmd?: string
   cpx?: boolean
+  simple?: boolean
 }) {
   const _ms = t1.valueOf() - t2.valueOf()
   const isBefore = t1.valueOf() - t2.valueOf() > 0
@@ -80,7 +83,7 @@ function timeDiff({
       d1.setFullYear(d1.getFullYear() - 1)
     }
     ms = d2.getTime() - d1.getTime() // 抹平年份差异
-    diff.year = years
+    if (!simple || years) diff.year = years
   }
   if (cmd.indexOf('o') != -1) {
     let years = d2.getFullYear() - d1.getFullYear() // 抹平年份差异
@@ -99,27 +102,27 @@ function timeDiff({
       d1.setMonth(d1.getMonth() - 1)
     }
     ms = d2.getTime() - d1.getTime() // 抹平月份差异
-    diff.month = years * 12 + months
+    if (!simple || months || 'year' in diff) diff.month = years * 12 + months
   }
   if (cmd.indexOf('d') != -1) {
     let days = Math.floor(ms / (24 * 3600 * 1000))
     ms = ms % (24 * 3600 * 1000) // 除去天数后剩余的毫秒数
-    diff.day = days
+    if (!simple || days || 'year' in diff || 'month' in diff) diff.day = days
   }
   if (cmd.indexOf('h') != -1) {
     let hours = Math.floor(ms / (3600 * 1000))
     ms = ms % (3600 * 1000) // 除去小时后剩余的毫秒数
-    diff.hour = hours
+    if (!simple || hours || 'day' in diff) diff.hour = hours
   }
   if (cmd.indexOf('m') != -1) {
     let minutes = Math.floor(ms / (60 * 1000))
     ms = ms % (60 * 1000) // 除去分钟后剩余的毫秒数
-    diff.minute = minutes
+    if (!simple || minutes || 'hour' in diff) diff.minute = minutes
   }
   if (cmd.indexOf('s') != -1) {
     let seconds = Math.floor(ms / 1000)
     ms = ms % 1000 // 除去秒数后剩余的毫秒数
-    diff.second = seconds
+    if (!simple || seconds || 'minute' in diff) diff.second = seconds
   }
   if (cmd.indexOf('M') != -1 || ms === Math.abs(_ms)) {
     // 保险：若指令输入为空，则输出毫秒数
@@ -181,17 +184,29 @@ function timeDiffHandler() {
         .replace('毫秒', 'M')
         .replace('秒', 's')
     }
-    const cpx = el.classList.contains('complex')
-    // 送入timeDiff函数
-    const t = timeDiff({ t1, t2, cmd, cpx })
-    if (!cpx) el.textContent = t
-    else el.innerHTML = t
     // 后续处理
     el.classList.remove('salt-time-diff')
     el.classList.add('salt-time-diff-done')
     el.setAttribute(cmdAttr, cmd)
     el.setAttribute(startAttr, t1.toString())
     el.setAttribute(endAttr, t2.toString())
+    handleElement(el)
+  }
+}
+
+function handleElement(el: Element) {
+  const t1 = getDate(el.getAttribute(startAttr))
+  const t2 = getDate()
+  const cmd = el.getAttribute(cmdAttr) || 'd'
+  const simple = el.classList.contains('simple')
+  const cpx = el.classList.contains('complex')
+  // 送入timeDiff函数
+  const t = timeDiff({ t1, t2, cmd, cpx, simple })
+  // 避免闪烁
+  if (!cpx) {
+    if (el.textContent != t) el.textContent = t
+  } else {
+    if (el.innerHTML != t) el.innerHTML = t
   }
 }
 
@@ -207,22 +222,7 @@ docReady(() => {
   // 刷新实时更新元素：每秒20次
   const update = () => {
     for (let i = 0; i < elems.length; i++) {
-      setTimeout(() => {
-        // 异步, 避免卡顿
-        const el = elems[i]
-        const t1 = getDate(el.getAttribute(startAttr))
-        const t2 = getDate()
-        const cmd = el.getAttribute(cmdAttr) || 'd'
-        const cpx = el.classList.contains('complex')
-        // 送入timeDiff函数
-        const t = timeDiff({ t1, t2, cmd, cpx })
-        // 避免闪烁
-        if (!cpx) {
-          if (el.textContent != t) el.textContent = t
-        } else {
-          if (el.innerHTML != t) el.innerHTML = t
-        }
-      }, 0)
+      handleElement(elems[i])
     }
   }
   setInterval(() => {

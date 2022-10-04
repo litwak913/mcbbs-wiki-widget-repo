@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-10-04 14:17:22
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-04 18:22:39
+ * @LastEditTime: 2022-10-04 18:52:03
  * @Description: 这个文件的功能
  * @FilePath: \mcbbs-wiki-widget-repo\widget\SaltTimeDiff\index.tsx
  */
@@ -70,8 +70,14 @@ export default () => {
       <hr />
       使用 UTC 时间戳 1589552138000：
       <br />
-      <span className="salt-time-diff real-time utc complex">
+      <span className="salt-time-diff real-time utc complex simple">
         1589552138000 SPLIT SPLIT d小时分钟秒M
+      </span>
+      <hr />
+      2022年10月4日 simple 模式：
+      <br />
+      <span className="salt-time-diff real-time utc complex simple">
+        2022年10月4日 SPLIT SPLIT 年月日小时分钟秒毫秒
       </span>
     </>
   )
