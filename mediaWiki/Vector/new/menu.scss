@@ -1,7 +1,18 @@
 #mw-head .vector-menu-dropdown h3 {
-  background-image:none;
+  background-image: none;
+}
+#p-personal .vector-menu-content {
+  margin-top: 5px;
+  border-radius: 10px;
+  padding: 5px 3px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
 }
 #p-cactions .vector-menu-content {
+  border-radius: 10px;
+  border: 1px white solid;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 12px 0px;
+  margin-top: 10px;
   li a {
     color: #4caf50;
   }
@@ -13,7 +24,9 @@
 .vector-user-links .vector-user-menu-more #pt-userpage-2 span {
   color: white;
 }
-
+.vector-menu-content-item-logout {
+  border: none;
+}
 .vector-menu-tabs {
   background-image: none;
   .selected {
@@ -29,7 +42,7 @@
   }
   li {
     background-image: none;
-    a {
+    &:not(.new) a {
       color: #4caf50;
     }
     &.selected a {
