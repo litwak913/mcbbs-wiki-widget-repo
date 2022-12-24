@@ -39,7 +39,8 @@
     "build:TopSign": "node script/bundle.js --TopSign",
     "build:ThemeLoader": "node script/bundle.js --ThemeLoader",
     "build:VectorThemeLoader": "node script/bundle.js --VectorThemeLoader",
-    "build:SaltSkinPreviewer": "node script/bundle.js --SaltSkinPreviewer"
+    "build:SaltSkinPreviewer": "node script/bundle.js --SaltSkinPreviewer",
+    "build:SaltTimeDiff": "node script/bundle.js --SaltTimeDiff"
   },
   "keywords": [
     "wiki"
